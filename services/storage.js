@@ -11,9 +11,16 @@ module.exports = {
 		fs.writeFileSync(clientPath + new Date().getTime(), payload);
 	},
 	get: function(client) {
-		console.log("Getting payload for" + client);
-		return JSON.stringify({
-			"payload": true
-		});
+		var clientPath = path + '/' + client + '/';
+		if (!fs.existsSync(clientPath)) {
+			return false;
+		}
+		var files = fs.readdirSync(clientPath).sort();
+		if (files.length === 0) {
+			return false;
+		}
+		var contents = fs.readFileSync(clientPath + files[0]);
+		fs.unlinkSync(clientPath + files[0]);
+		return contents;
 	}
 };
