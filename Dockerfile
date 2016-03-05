@@ -2,6 +2,7 @@ FROM alpine
 
 RUN apk add --no-cache nodejs git
 RUN npm install -g bower
+RUN mkdir /usr/data
 
 WORKDIR /usr/src/app
 
@@ -12,6 +13,11 @@ COPY . /usr/src/app
 RUN bower install --allow-root
 RUN npm remove -g bower
 RUN apk del git
+
+ENV API_KEY changeme
+ENV DATA_PATH /usr/data
+
+VOLUME /usr/data
 
 EXPOSE 3000
 
