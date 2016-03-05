@@ -12,7 +12,7 @@ var functions = [{
 	}, {
 		key: 'payload',
 		name: 'Message Payload',
-		default: '{"test": ok}'
+		default: '{"test": true}'
 	}]
 }, {
 	fn: 'Get',
@@ -34,5 +34,22 @@ function renderFunctions(selector) {
 		$(selector).html(functions.map(function(fn) {
 			return Mustache.render(template, fn);
 		}).join(''));
+	});
+}
+
+function submit(me, fn, endpoint) {
+	$('#' + fn + ' > .result').text('');
+	var json = $(me).parents('tr').find('input').toArray().reduce(function(object, input) {
+		var key = $(input).attr('id').split('-')[1];
+		var value = $(input).val();
+		object[key] = value;
+		return object;
+	}, {});
+	$.ajax({
+		url: endpoint,
+		data: json,
+		success: function(data) {
+			$('#' + fn + ' > .result').text(JSON.stringify(data, undefined, 4));
+		}
 	});
 }

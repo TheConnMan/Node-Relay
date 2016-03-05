@@ -10,5 +10,5 @@
 		{{/ params }}
 	</td>
 	<td class="result"></td>
-	<td><button class="ui primary button">Submit</button></td>
+	<td><button class="ui primary button" onclick="submit(this, '{{ fn }}', '{{ endpoint }}')">Submit</button></td>
 </tr>
