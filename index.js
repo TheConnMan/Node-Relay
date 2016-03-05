@@ -1,4 +1,5 @@
 var express = require('express');
+var storage = require('./services/storage');
 
 var app = express();
 
@@ -9,6 +10,26 @@ app.get('/api/v1/:fn', function(req, res) {
 		};
 		if (req.query.apiKey !== process.env.API_KEY) {
 			throw "Invalid API key";
+		}
+		if (!req.query.clientId || req.query.clientId.length === 0) {
+			throw "A client ID is required";
+		}
+		if (req.params.fn == "put") {
+			if (!req.query.payload || req.query.payload.length === 0) {
+				throw "A payload is required";
+			}
+			result.success = true;
+			storage.put(req.query.clientId, req.query.payload);
+		}
+		if (req.params.fn == "get") {
+			result.success = true;
+			var payload = storage.get(req.query.clientId);
+			if (payload) {
+				result.success = true;
+				result.message = JSON.parse(payload);
+			} else {
+				result.success = false;
+			}
 		}
 		res.json(result);
 	} catch (e) {
