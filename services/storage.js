@@ -21,6 +21,9 @@ module.exports = {
 		}
 		var contents = fs.readFileSync(clientPath + files[0]);
 		fs.unlinkSync(clientPath + files[0]);
+		if (files.length === 1) {
+			fs.rmdirSync(clientPath);
+		}
 		return contents;
 	}
 };
