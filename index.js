@@ -20,6 +20,11 @@ app.get('/api/:fn', function(req, res) {
 			if (!req.query.payload || req.query.payload.length === 0) {
 				throw "A payload is required";
 			}
+			try {
+				JSON.parse(req.query.payload);
+			} catch (e) {
+				throw "Payload is not JSON";
+			}
 			result.success = true;
 			storage.put(req.query.clientId, req.query.payload);
 		}
