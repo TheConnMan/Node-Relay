@@ -3,6 +3,8 @@ var storage = require('./services/storage');
 
 var app = express();
 
+app.use(express.static('public'));
+
 app.get('/api/v1/:fn', function(req, res) {
 	try {
 		var result = {
