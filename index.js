@@ -5,7 +5,7 @@ var app = express();
 
 app.use(express.static('public'));
 
-app.get('/api/v1/:fn', function(req, res) {
+app.get('/api/:fn', function(req, res) {
 	try {
 		var result = {
 			"ok": true
