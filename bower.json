@@ -1,0 +1,14 @@
+{
+  "name": "transient",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#~2.1.7"
+  }
+}
