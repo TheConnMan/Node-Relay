@@ -15,6 +15,33 @@
 				</div>
 			</h1>
 		</div>
+		<div class="ui segment">
+			<h2 class="ui dividing header">Node Relay</h2>
+			<p>
+				<b>Node Relay</b> is a lightweight, file based relay server which can be used to relay small JSON payloads in and out of private networks.
+				There are only two API calls: <b>/api/put</b> and <b>/api/get</b>. Messages are stored as plain text and returned as JSON objects. Below are
+				descriptions of the API calls.
+			</p>
+			<table class="ui celled table">
+				<thead>
+					<tr>
+						<th class="collapsing">Function</th>
+						<th class="collapsing">URI</th>
+						<th>Parameters</th>
+						<th>Result</th>
+						<th class="collapsing">Submit</th>
+					</tr>
+				</thead>
+				<tbody id="table"></tbody>
+			</table>
+		</div>
 		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="/bower_components/mustache.js/mustache.min.js"></script>
+		<script src="/js/app.js"></script>
+		<script>
+			$(function() {
+				renderFunctions('#table');
+			});
+		</script>
 	</body>
 </html>
