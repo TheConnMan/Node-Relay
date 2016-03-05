@@ -1,6 +1,6 @@
 {
   "name": "node-relay",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Lightweight, file based relay server",
   "main": "index.js",
   "scripts": {
